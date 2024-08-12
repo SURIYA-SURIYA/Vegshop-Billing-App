@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <style>
+        .main{
+            margin-top:100px;
+            display:flex;
+            align-item:center;
+            justify-content:center;
+        }
+        .main h2{
+            text-align:center;
+        }
+        form{
+            border-radius:15px;
+            background-color:#ccc;
+            width:500px;
+            display:flex;
+            flex-direction:column;
+            gap:10px;
+            padding:20px;
+        }
+        body {
+            background-image: url("{% static 'assets/images/carrat.jpg' %}");
+            background-size: 100% auto;
+            background-repeat:no-repeat;
+
+
+        }
+        lable{
+            color:red;
+        }
+        button{
+            border-radius:8px;
+            color:white;
+            border:0;
+            width:100px;
+            margin-left:175px;
+            padding:10px;
+            cursor:pointer;
+            background-color: #21D192;
+
+
+        }
+        a{
+            text-decoration:none;
+            margin-left:400px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+    <form class="form" method="post">
+        <h1>Login</h1>
+        {% csrf_token %}
+        <label for="username">Username</label>
+        <input class="form-control" type="text" name="username" id="username" required>
+        <br>
+        <label for="password">Password</label>
+        <input class="form-control" type="password" name="password" id="password" required>
+        <br>
+        <button class="btn btn-success" type="submit">Login</button>
+        <a href="/register/">Register</a>
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    </form>
+</div>
+    
+
+</body>
+</html>

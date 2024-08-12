@@ -1,0 +1,78 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <style>
+        .main{
+            margin-top:150px;
+            display:flex;
+            align-item:center;
+            justify-content:center;
+        }
+        .main h2{
+            text-align:center;
+        }
+        body {
+            background-image: url("{% static 'assets/images/carrat.jpg' %}");
+            background-size: 100% auto;
+            background-repeat:no-repeat;
+        }
+        form{
+            border-radius:15px;
+            background-color:#ccc;
+            width:500px;
+            display:flex;
+            flex-direction:column;
+            gap:10px;
+            padding:20px;
+        }
+        lable{
+            color:red;
+        }
+        button{
+            border-radius:8px;
+            color:white;
+            border:0;
+            width:100px;
+            margin-left:175px;
+            padding:10px;
+            cursor:pointer;
+
+        }
+    </style>
+</head>
+<body>
+   <div class="main">
+    <form method="post">
+         <h2>Register</h2>
+        {% csrf_token %}
+        {{ form.username }} 
+        {%if form.errors.username   %}
+        <lable>{{ form.errors.username }}</lable>
+        {%endif %}
+        {{ form.email }}
+        {%if form.errors.email   %}
+        <lable>{{ form.errors.email }}</lable>
+        {%endif %}
+        {{ form.password1 }}
+        {%if form.errors.password1 %}
+        <lable>{{ form.errors.password1 }}</lable>
+        {%endif %}
+        {{ form.password2 }}
+        {%if form.errors.password2   %}
+        <lable>{{ form.errors.password2 }}</lable>
+        {%endif %}
+        <button class="btn btn-success" type="submit">Register</button>
+    </form>
+</div>
+</body>
+</html> 
+
+
+
